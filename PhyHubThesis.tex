@@ -1,0 +1,137 @@
+\documentclass{ctexart} 
+% \documentclass{article} 如果用英文
+% \documentclass[10pt,a4paper]{ctexart}  字体大小和纸张大小，默认分别为10pt和a4paper
+% 五号 = 10.5pt，小四=12pt，四号=14pt
+% 其他可选参量如twocolumn, 两行排版
+
+\usepackage{biblatex} %[style=gb7714-2015]{biblatex} 可以选择样式
+\addbibresource{PhyHubThesis.bib} % 把这里改成实际的文件名
+
+% 令参考资料能够加入目录中:
+\defbibheading{bibliography}[\bibname]{% 
+	\section{#1}% 
+	\markboth{#1}{#1}}
+
+% 将路径绝对路径 (Windows) 或相对路径 (Mac OS或Linux)
+% 使用「/」而不是「\」
+\newcommand{\PATH}{路径/}
+
+% 引用的宏包:
+% 宏包的使用, 可以在命令行运行texdoc <宏包名>获得文档
+\usepackage{multicol} % 分栏 (全局分栏建议在文档类处设置)
+\usepackage{amsmath} % AMS数学标准
+\usepackage{amssymb} % 数学符号
+\usepackage{mathrsfs} % 花体
+\usepackage{esint} % 积分
+\usepackage{siunitx} % 标准SI数值和单位处理
+\usepackage{tikz} % 绘图
+\usepackage{float} % 浮动体 (供图片, 表格等) 扩展, 主要用于提供h模式
+\usepackage{graphicx} % 插入图片
+\usepackage[font=small, skip=5pt]{caption} % 缩小题注字体和题注与图片距离
+\usepackage{subcaption} % 子图和子图的题注
+\usepackage{svg} % svg位图
+\usepackage{wrapfig} % 简单的图文绕排
+\usepackage[inline]{enumitem} % 编号
+\usepackage{geometry} % 调整页边距
+% \geometry{left=1.6cm,right=1.6cm}
+\usepackage{xcolor} % 颜色
+\usepackage[colorlinks=true,bookmarks=true]{hyperref} % 引用, 交叉引用, 图表等的链接; 生成书签
+\hypersetup{linkcolor=[rgb]{1,0.27,0},bookmarksopen = true}% 更多设置请查阅: texdoc hyperref
+
+
+% 定义一些笔者常用的指令:
+\newcommand{\me}{\mathrm{e}} % 自然对数的底
+\newcommand{\mi}{\mathrm{i}} % 虚数单位
+\newcommand{\md}{\mathrm{d}} % 微分算子d
+\newcommand*{\basis}[1]{\hat{\boldsymbol{#1}}} % 基底
+\newcommand*{\bv}{\boldsymbol} % 向量加粗
+\newcommand*{\pdiff}[2]{\frac{\partial #1}{\partial #2}} % 导数 \diff{y}{x}
+\newcommand*{\npdiff}[3]{\frac{\partial^{#1} #2}{\partial #3^{#1}}} % n阶导数 \ndiff{n}{y}{x}
+\newcommand*{\diff}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}} % 偏导数\pdiff{y}{x}
+\newcommand*{\ndiff}[3]{\frac{\mathrm{d}^{#1} #2}{\mathrm{d} #3^{#1}}} % n阶偏导数\pdiff{n}{y}{x}
+
+% 笔者习惯的运算符:
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\ctg}{ctg}
+\DeclareMathOperator{\arctg}{arctg}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\ch}{ch}
+% \DeclareMathOperator*{\指令}{显示} 
+% 带星号的版本会像\lim一样
+
+% 文章标题页信息:
+\title{标题}
+\author{ 作者1\thanks{作者1的联系方式}
+	\and
+		作者2\thanks{作者2的联系方式}}
+\date{\today} % 自动生成日期
+
+\begin{document}
+\maketitle % 打印标题
+
+\begin{abstract}
+	摘要
+	\centering % 使得关键字居中
+	\textbf{关键字:}
+		关键字1\ 
+		关键字2\  
+		关键字3
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{模板使用说明}
+\subsection{编译}
+把导言区的\verb|\newcommand{\PATH}{路径}|改成此文档的相对路径 (MAC OS或Linux) 或绝对路径 (Windows), 然后在该目录下使用命令行依次运行:\\[1pt]
+\texttt{xelatex} 文件名 (可以省略.tex)\\
+\texttt{biber} 文件名 (可以省略.tex)\\
+\texttt{xelatex} 文件名\\
+\texttt{xelatex} 文件名\\
+
+\subsection{使用说明}
+
+引用.bib中的书目: \cite{Knuth}.
+
+\begin{figure}[h] %
+\centering
+\begin{subfigure}{.5\textwidth}
+	\centering
+	\includegraphics[width=6cm]{\PATH latex-project-logo.pdf}
+	\caption{题注}
+	\label{子图1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+	\centering
+	\includegraphics[width=6cm]{\PATH latex-project-logo.pdf}
+	\caption{题注}
+	\label{子图2}
+\end{subfigure}
+\caption{一个并排放置图片的示例的示例}
+\end{figure}
+
+交叉引用的例子: 图~\ref{子图1} 是LaTeX Project的图标.
+
+单行公式:
+\begin{equation}\label{公式的标签}
+	\int \diff y x\,\md x = y(x) + C.
+\end{equation}
+
+多行公式与对齐:
+\begin{align}
+	\nabla\cdot \bv D &= \rho
+	\\
+	\nabla \times \bv E & =  - \pdiff{\bv B}{t}
+	\\
+	\nabla \cdot \bv B &= 0
+	\\
+	\nabla \times \bv H &= \bv j + \pdiff{\bv D}{t}
+\end{align}
+
+\section{\texorpdfstring{在目录和文档中显示的标题}{在书签中显示的标题}}
+
+使用\verb|\texorpdfstring{在目录和文档中显示的标题}{在书签中显示的标题}|来处理标题上有\LaTeX{}公式时标签不能正常显示的问题.
+
+\nocite{*} % 这个表示列出所有没有在文中被引用的参考文献
+\printbibliography[heading=bibnumbered, title={参考文献}]
+\end{document}
