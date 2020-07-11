@@ -1,3 +1,4 @@
+% PhyHubThesis v0.1.0
 \documentclass{ctexart} 
 % \documentclass{article} 如果用英文
 % \documentclass[10pt,a4paper]{ctexart}  字体大小和纸张大小，默认分别为10pt和letterpaper
@@ -8,8 +9,13 @@
 \addbibresource{PhyHubThesis.bib} % 把这里改成实际的文件名
 
 % 令参考资料能够加入目录中:
-\defbibheading{bibliography}[\bibname]{% 
+\defbibheading{withoutstar}[\bibname]{% 
 	\section{#1}% 
+	\markboth{#1}{#1}}
+
+\defbibheading{withstar}[\bibname]{% 
+	\section*{#1}% 
+	\addcontentsline{toc}{section}{目录}
 	\markboth{#1}{#1}}
 
 % 将路径绝对路径 (Windows) 或相对路径 (Mac OS或Linux)
@@ -45,10 +51,18 @@
 \newcommand{\md}{\mathrm{d}} % 微分算子d
 \newcommand*{\basis}[1]{\hat{\boldsymbol{#1}}} % 基底
 \newcommand*{\bv}{\boldsymbol} % 向量加粗
-\newcommand*{\pdiff}[2]{\frac{\partial #1}{\partial #2}} % 导数 \diff{y}{x}
-\newcommand*{\npdiff}[3]{\frac{\partial^{#1} #2}{\partial #3^{#1}}} % n阶导数 \ndiff{n}{y}{x}
-\newcommand*{\diff}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}} % 偏导数\pdiff{y}{x}
-\newcommand*{\ndiff}[3]{\frac{\mathrm{d}^{#1} #2}{\mathrm{d} #3^{#1}}} % n阶偏导数\pdiff{n}{y}{x}
+\newcommand*{\diff}[3][1]
+{\if#11%
+	\frac{\mathrm{d} #2}{\mathrm{d} #3}% 导数\diff{y}{x}
+\else%
+	\frac{\mathrm{d}^{#1} #2}{\mathrm{d} #3^{#1}}% n阶导数\diff[n]{y}{x}
+\fi}
+\newcommand*{\pdiff}[3][1]
+{\if#11%
+	\frac{\partial #2}{\partial #3}% 偏导数\pdiff{y}{x}
+\else%
+	\frac{\partial^{#1} #2}{\partial #3^{#1}}% n阶偏导数\pdiff[n]{y}{x}
+\fi}
 
 % 笔者习惯的运算符:
 \DeclareMathOperator{\tg}{tg}
@@ -70,7 +84,8 @@
 \maketitle % 打印标题
 
 \begin{abstract}
-	摘要
+	摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容
+
 	\centering % 使得关键字居中
 	\textbf{关键字:}
 		关键字1\ 
@@ -89,7 +104,7 @@
 \texttt{xelatex} 文件名\\
 \texttt{xelatex} 文件名\\
 
-\subsection{使用说明}
+\subsection{使用示例}
 
 引用.bib中的书目: \cite{Knuth}.
 
@@ -110,11 +125,11 @@
 \caption{一个并排放置图片的示例的示例}
 \end{figure}
 
-交叉引用的例子: 图~\ref{子图1} 是LaTeX Project的图标.
+交叉引用的例子: 图~\ref{子图1} 是\LaTeX{} Project的图标.
 
 单行公式:
 \begin{equation}\label{公式的标签}
-	\int \diff y x\,\md x = y(x) + C.
+	\int \diff[2] y x\,\md x = \diff y x + C.
 \end{equation}
 
 多行公式与对齐:
@@ -130,8 +145,9 @@
 
 \section{\texorpdfstring{在目录和文档中显示的标题}{在书签中显示的标题}}
 
-使用\verb|\texorpdfstring{在目录和文档中显示的标题}{在书签中显示的标题}|来处理标题上有\LaTeX{}公式时标签不能正常显示的问题.
-
+可以使用\verb|\texorpdfstring{在目录和文档中显示的标题}{在书签中显示的标题}|来处理标题上有\LaTeX{}公式时标签不能正常显示的问题.
+\appendix
+\section{某附录}
 \nocite{*} % 这个表示列出所有没有在文中被引用的参考文献
-\printbibliography[heading=bibnumbered, title={参考文献}]
+\printbibliography[heading=withoutstar, title={参考文献}] % 会显示为A/B/... 参考文献
 \end{document}
