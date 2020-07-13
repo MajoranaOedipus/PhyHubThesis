@@ -15,7 +15,7 @@
 
 \defbibheading{withstar}[\bibname]{% 
 	\section*{#1}% 
-	\addcontentsline{toc}{section}{目录}
+	\addcontentsline{toc}{section}{参考文献}
 	\markboth{#1}{#1}}
 
 % 将路径绝对路径 (Windows) 或相对路径 (Mac OS或Linux)
@@ -149,5 +149,5 @@
 \appendix
 \section{某附录}
 \nocite{*} % 这个表示列出所有没有在文中被引用的参考文献
-\printbibliography[heading=withoutstar, title={参考文献}] % 会显示为A/B/... 参考文献
+\printbibliography[heading=withoutstar, title={参考文献}] % 如heading=withstar则会将参考文献前的 (附录编号) 字母削除
 \end{document}
