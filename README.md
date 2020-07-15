@@ -13,6 +13,12 @@ PhyHub用LaTeX课业论文模板.
 `xelatex` 文件名
 
 ## 更新日志
+
+### v0.1.2
+July 15, 2020
+1. 将`\md`指令改成了`\dif`, 而且提供了`\dif[2]`的高阶微分用法
+2. 修正了typo
+
 ### v0.1.1  
 July 13, 2020
 * 修正了一处错误：`withstar`版的`printbibliography`在toc中错误显示为「目录」

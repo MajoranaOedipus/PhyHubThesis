@@ -1,4 +1,6 @@
-% PhyHubThesis v0.1.0
+% PhyHubThesis v0.1.2
+% GitHub地址: https://github.com/HoyanMok/PhyHubThesis
+% 如GitHub不能访问, 请以邮件联系作者: victoriesmo@hotmail.com
 \documentclass{ctexart} 
 % \documentclass{article} 如果用英文
 % \documentclass[10pt,a4paper]{ctexart}  字体大小和纸张大小，默认分别为10pt和letterpaper
@@ -48,9 +50,14 @@
 % 定义一些笔者常用的指令:
 \newcommand{\me}{\mathrm{e}} % 自然对数的底
 \newcommand{\mi}{\mathrm{i}} % 虚数单位
-\newcommand{\md}{\mathrm{d}} % 微分算子d
 \newcommand*{\basis}[1]{\hat{\boldsymbol{#1}}} % 基底
 \newcommand*{\bv}{\boldsymbol} % 向量加粗
+\newcommand*{\dif}[1][1]
+{\if#11%
+	\mathop{}\!\mathrm{d}%
+\else%
+	\mathop{}\!\mathrm{d}^#1
+\fi} % 微分算子d
 \newcommand*{\diff}[3][1]
 {\if#11%
 	\frac{\mathrm{d} #2}{\mathrm{d} #3}% 导数\diff{y}{x}
@@ -100,7 +107,7 @@
 \subsection{编译}
 把导言区的\verb|\newcommand{\PATH}{路径}|改成此文档的相对路径 (MAC OS或Linux) 或绝对路径 (Windows), 然后在该目录下使用命令行依次运行:\\[1pt]
 \texttt{xelatex} 文件名 (可以省略.tex)\\
-\texttt{biber} 文件名 (可以省略.tex)\\
+\texttt{biber} 文件名 (可以省略.bib)\\
 \texttt{xelatex} 文件名\\
 \texttt{xelatex} 文件名\\
 
@@ -129,7 +136,7 @@
 
 单行公式:
 \begin{equation}\label{公式的标签}
-	\int \diff[2] y x\,\md x = \diff y x + C.
+	\int \diff[2] y x\,\dif x = \diff y x + C.
 \end{equation}
 
 多行公式与对齐:
@@ -146,6 +153,7 @@
 \section{\texorpdfstring{在目录和文档中显示的标题}{在书签中显示的标题}}
 
 可以使用\verb|\texorpdfstring{在目录和文档中显示的标题}{在书签中显示的标题}|来处理标题上有\LaTeX{}公式时标签不能正常显示的问题.
+
 \appendix
 \section{某附录}
 \nocite{*} % 这个表示列出所有没有在文中被引用的参考文献
