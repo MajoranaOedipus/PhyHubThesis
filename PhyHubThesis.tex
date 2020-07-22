@@ -18,11 +18,12 @@
 \defbibheading{withstar}[\bibname]{% 
 	\section*{#1}% 
 	\addcontentsline{toc}{section}{参考文献}
+	% \addcontentsline{toc}{section}{Bibliography}
 	\markboth{#1}{#1}}
 
-% 将路径绝对路径 (Windows) 或相对路径 (Mac OS或Linux)
+% 将路径改成绝对路径或相对路径
 % 使用「/」而不是「\」
-\newcommand{\PATH}{路径/}
+\newcommand{\PATH}{./}
 
 % 引用的宏包:
 % 宏包的使用, 可以在命令行运行texdoc <宏包名>获得文档
@@ -44,7 +45,7 @@
 % \geometry{left=1.6cm,right=1.6cm}
 \usepackage{xcolor} % 颜色
 \usepackage[colorlinks=true,bookmarks=true]{hyperref} % 引用, 交叉引用, 图表等的链接; 生成书签
-\hypersetup{linkcolor=[rgb]{1,0.27,0},bookmarksopen = true}% 更多设置请查阅: texdoc hyperref
+\hypersetup{linkcolor=[rgb]{1,0.27,0}, bookmarksopen = true}% 更多设置请查阅: texdoc hyperref
 
 
 % 定义一些笔者常用的指令:
@@ -95,6 +96,7 @@
 
 	\centering % 使得关键字居中
 	\textbf{关键字:}
+	% \texbf{Keywords: }
 		关键字1\ 
 		关键字2\  
 		关键字3
@@ -158,4 +160,5 @@
 \section{某附录}
 \nocite{*} % 这个表示列出所有没有在文中被引用的参考文献
 \printbibliography[heading=withoutstar, title={参考文献}] % 如heading=withstar则会将参考文献前的 (附录编号) 字母削除
+% \printbibliography[heading=withoutstar, title={Bibliography}]
 \end{document}
