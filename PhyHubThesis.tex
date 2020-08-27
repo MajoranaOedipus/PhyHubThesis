@@ -1,4 +1,4 @@
-% PhyHubThesis v0.1.2
+% PhyHubThesis v0.2.0
 % GitHub地址: https://github.com/HoyanMok/PhyHubThesis
 % 如GitHub不能访问, 请以邮件联系作者: victoriesmo@hotmail.com
 \documentclass{ctexart} 
@@ -53,24 +53,67 @@
 \newcommand{\mi}{\mathrm{i}} % 虚数单位
 \newcommand*{\basis}[1]{\hat{\boldsymbol{#1}}} % 基底
 \newcommand*{\bv}{\boldsymbol} % 向量加粗
+
+\newcommand*{\bra}[1]
+	{
+		\left\langle
+			{#1}
+		\right\vert
+	}% 左矢 <a|
+\newcommand*{\ket}[1]
+	{
+		\left\vert
+			{#1}
+		\right\rangle
+	}% 右矢 |b>
+\newcommand*{\dyad}[2]
+	{
+		\left\vert
+				{#1}
+				\middle\rangle
+				\middle\langle
+				{#2}
+		\right\vert
+	}% 并矢 |a><b|
+\newcommand*{\inner}[2]
+	{
+		\left\langle
+			{#1}
+			\middle\vert
+			{#2}
+		\right\rangle
+	}% 内积 <a|b>
+\newcommand*{\varinner}[3]
+	{
+		\left\langle
+			{#1}
+			\middle\vert
+			{#2}
+			\middle\vert
+			{#3}
+		\right\rangle
+	}% 能量内积 <a|A|b>
+
 \newcommand*{\dif}[1][1]
-{\if#11%
-	\mathop{}\!\mathrm{d}%
-\else%
-	\mathop{}\!\mathrm{d}^#1
-\fi} % 微分算子d
+	{\if#11%
+		\mathop{}\!\mathrm{d}%
+	\else%
+		\mathop{}\!\mathrm{d}^#1
+	\fi} % 微分算子d
 \newcommand*{\diff}[3][1]
-{\if#11%
-	\frac{\mathrm{d} #2}{\mathrm{d} #3}% 导数\diff{y}{x}
-\else%
-	\frac{\mathrm{d}^{#1} #2}{\mathrm{d} #3^{#1}}% n阶导数\diff[n]{y}{x}
-\fi}
+	{\if#11%
+		\frac{\mathrm{d} #2}{\mathrm{d} #3}% 导数\diff{y}{x}
+	\else%
+		\frac{\mathrm{d}^{#1} #2}{\mathrm{d} #3^{#1}}% n阶导数\diff[n]{y}{x}
+	\fi}
 \newcommand*{\pdiff}[3][1]
-{\if#11%
-	\frac{\partial #2}{\partial #3}% 偏导数\pdiff{y}{x}
-\else%
-	\frac{\partial^{#1} #2}{\partial #3^{#1}}% n阶偏导数\pdiff[n]{y}{x}
-\fi}
+	{\if#11%
+		\frac{\partial #2}{\partial #3}% 偏导数\pdiff{y}{x}
+	\else%
+		\frac{\partial^{#1} #2}{\partial #3^{#1}}% n阶偏导数\pdiff[n]{y}{x}
+	\fi}
+
+
 
 % 笔者习惯的运算符:
 \DeclareMathOperator{\tg}{tg}
@@ -134,11 +177,11 @@
 \caption{一个并排放置图片的示例的示例}
 \end{figure}
 
-交叉引用的例子: 图~\ref{子图1} 是\LaTeX{} Project的图标.
+交叉引用的例子: 图~\ref{子图1} 是\LaTeX{} Project的图标. 
 
 单行公式:
 \begin{equation}\label{公式的标签}
-	\int \diff[2] y x\,\dif x = \diff y x + C.
+	\int \diff[2] y x\,\dif x = \diff y x + C. 
 \end{equation}
 
 多行公式与对齐:
