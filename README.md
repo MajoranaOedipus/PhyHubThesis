@@ -14,6 +14,10 @@ PhyHub用LaTeX课业论文模板.
 
 ## 更新日志
 
+### v0.2.1
+September 12, 2020
+* 添加了braket (`\braket`) 命令
+
 ### v0.2.0
 August 27, 2020
 * 添加了左右矢 (`\bra`, `\ket`), 并矢 (`dyad{a}{b}`) 和内积 (`\inner{a}{b}`, `\varinner{a}{A}{b}`)的命令
