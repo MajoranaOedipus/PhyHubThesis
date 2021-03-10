@@ -1,4 +1,4 @@
-% PhyHubThesis v0.2.1
+% PhyHubThesis v0.3.0
 % GitHub地址: https://github.com/HoyanMok/PhyHubThesis
 % 如GitHub不能访问, 请以邮件联系作者: victoriesmo@hotmail.com
 \documentclass{ctexart} 
@@ -6,6 +6,13 @@
 % \documentclass[10pt,a4paper]{ctexart}  字体大小和纸张大小，默认分别为10pt和letterpaper
 % 五号 = 10.5pt，小四=12pt，四号=14pt
 % 其他可选参量如twocolumn, 两行排版
+
+% 文章标题页信息:
+\title{标题}
+\author{ 作者1\thanks{作者1的联系方式}
+	\and
+		作者2\thanks{作者2的联系方式}}
+\date{\today} % 自动生成日期
 
 \usepackage{biblatex} %[style=gb7714-2015]{biblatex} 可以选择样式
 \addbibresource{PhyHubThesis.bib} % 把这里改成实际的文件名
@@ -34,6 +41,7 @@
 \usepackage{esint} % 积分
 \usepackage{siunitx} % 标准SI数值和单位处理
 \usepackage{tikz} % 绘图
+\usepackage[siunitx]{circuitikz}
 \usepackage{float} % 浮动体 (供图片, 表格等) 扩展, 主要用于提供h模式
 \usepackage{graphicx} % 插入图片
 \usepackage[font=small, skip=5pt]{caption} % 缩小题注字体和题注与图片距离
@@ -44,7 +52,7 @@
 \usepackage{geometry} % 调整页边距
 % \geometry{left=1.6cm,right=1.6cm}
 \usepackage{xcolor} % 颜色
-\usepackage[colorlinks=true,bookmarks=true]{hyperref} % 引用, 交叉引用, 图表等的链接; 生成书签
+\usepackage[colorlinks=true, bookmarks=true]{hyperref} % 引用, 交叉引用, 图表等的链接; 生成书签
 \hypersetup{linkcolor=[rgb]{1,0.27,0}, bookmarksopen = true}% 更多设置请查阅: texdoc hyperref
 
 
@@ -130,12 +138,7 @@
 % \DeclareMathOperator*{\指令}{显示} 
 % 带星号的版本会像\lim一样
 
-% 文章标题页信息:
-\title{标题}
-\author{ 作者1\thanks{作者1的联系方式}
-	\and
-		作者2\thanks{作者2的联系方式}}
-\date{\today} % 自动生成日期
+
 
 \begin{document}
 \maketitle % 打印标题
@@ -200,6 +203,20 @@
 	\\
 	\nabla \times \bv H &= \bv j + \pdiff{\bv D}{t}
 \end{align}
+
+\begin{figure}[H]%使用figure环境
+	\begin{center}
+	  \begin{circuitikz}
+		\draw (0,0) % 坐标 (0, 0) 做为起始点，(0, 2) 做为终点，绘制电压源。
+		% V 代表电压源，v=$U_q$ 绘制标识。
+		to[V, v=$U_q$] (0,2) % 电压源
+		to[short] (2,2) % 坐标(2,2)做为起始点，(2,0)做为终点，绘制电阻。_R_代表电压源，_R=$R_1$_绘制标识。
+		to[R=$R_1$] (2,0) % 电阻
+		to[short] (0, 0); % 注意结尾的分号！
+	  \end{circuitikz}
+	  \caption{first circuit.}%添加标题
+	\end{center}
+  \end{figure}
 
 \section{\texorpdfstring{在目录和文档中显示的标题}{在书签中显示的标题}}
 
