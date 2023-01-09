@@ -3,7 +3,7 @@ PhyHub用LaTeX课业论文模板.
 
 ## 编译说明
 你需要安装LaTeX的主流发行版. 
-推荐[TeX Live 2020](https://www.tug.org/texlive/).
+推荐[TeX Live 2022](https://www.tug.org/texlive/).
 
 把导言区的`\newcommand{\PATH}{路径}`改成此文档的相对路径 (MAC OS或Linux) 或绝对路径 (Windows), 然后在该目录下使用命令行依次运行:
 
@@ -13,6 +13,11 @@ PhyHub用LaTeX课业论文模板.
 `xelatex` 文件名
 
 ## 更新日志
+
+### v0.4.0
+January 9, 2023
+
+分离了 sty 文件，更新了一些宏包和很多自定义命令
 
 ### v0.2.1
 September 12, 2020

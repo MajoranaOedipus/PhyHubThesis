@@ -7,6 +7,8 @@
 % 五号 = 10.5pt，小四=12pt，四号=14pt
 % 其他可选参量如twocolumn, 两行排版
 
+\usepackage{PhyHubThesis}
+
 % 文章标题页信息:
 \title{标题}
 \author{ 作者1\thanks{作者1的联系方式}
@@ -14,131 +16,9 @@
 		作者2\thanks{作者2的联系方式}}
 \date{\today} % 自动生成日期
 
-\usepackage{biblatex} %[style=gb7714-2015]{biblatex} 可以选择样式
 \addbibresource{PhyHubThesis.bib} % 把这里改成实际的文件名
 
-% 令参考资料能够加入目录中:
-\defbibheading{withoutstar}[\bibname]{% 
-	\section{#1}% 
-	\markboth{#1}{#1}}
-
-\defbibheading{withstar}[\bibname]{% 
-	\section*{#1}% 
-	\addcontentsline{toc}{section}{参考文献}
-	% \addcontentsline{toc}{section}{Bibliography}
-	\markboth{#1}{#1}}
-
-% 将路径改成绝对路径或相对路径
-% 使用「/」而不是「\」
-\newcommand{\PATH}{./}
-
-% 引用的宏包:
-% 宏包的使用, 可以在命令行运行texdoc <宏包名>获得文档
-\usepackage{multicol} % 分栏 (全局分栏建议在文档类处设置)
-\usepackage{amsmath} % AMS数学标准
-\usepackage{amssymb} % 数学符号
-\usepackage{mathrsfs} % 花体
-\usepackage{esint} % 积分
-\usepackage{siunitx} % 标准SI数值和单位处理
-\usepackage{tikz} % 绘图
-\usepackage[siunitx]{circuitikz}
-\usepackage{float} % 浮动体 (供图片, 表格等) 扩展, 主要用于提供h模式
-\usepackage{graphicx} % 插入图片
-\usepackage[font=small, skip=5pt]{caption} % 缩小题注字体和题注与图片距离
-\usepackage{subcaption} % 子图和子图的题注
-\usepackage{svg} % svg位图
-\usepackage{wrapfig} % 简单的图文绕排
-\usepackage[inline]{enumitem} % 编号
-\usepackage{geometry} % 调整页边距
 % \geometry{left=1.6cm,right=1.6cm}
-\usepackage{xcolor} % 颜色
-\usepackage[colorlinks=true, bookmarks=true]{hyperref} % 引用, 交叉引用, 图表等的链接; 生成书签
-\hypersetup{linkcolor=[rgb]{1,0.27,0}, bookmarksopen = true}% 更多设置请查阅: texdoc hyperref
-
-
-% 定义一些笔者常用的指令:
-\newcommand{\me}{\mathrm{e}} % 自然对数的底
-\newcommand{\mi}{\mathrm{i}} % 虚数单位
-\newcommand*{\basis}[1]{\hat{\boldsymbol{#1}}} % 基底
-\newcommand*{\bv}{\boldsymbol} % 向量加粗
-
-\newcommand*{\bra}[1]
-	{
-		\left\langle
-			{#1}
-		\right\vert
-	}% 左矢 <a|
-\newcommand*{\ket}[1]
-	{
-		\left\vert
-			{#1}
-		\right\rangle
-	}% 右矢 |b>
-\newcommand*{\braket}[1]
-	{
-		\left\langle
-			{#1}
-		\right\rangle
-	} % 期望 <A>
-\newcommand*{\dyad}[2]
-	{
-		\left\vert
-				{#1}
-				\middle\rangle
-				\middle\langle
-				{#2}
-		\right\vert
-	}% 并矢 |a><b|
-\newcommand*{\inner}[2]
-	{
-		\left\langle
-			{#1}
-			\middle\vert
-			{#2}
-		\right\rangle
-	}% 内积 <a|b>
-\newcommand*{\varinner}[3]
-	{
-		\left\langle
-			{#1}
-			\middle\vert
-			{#2}
-			\middle\vert
-			{#3}
-		\right\rangle
-	}% 能量内积 <a|A|b>
-
-\newcommand*{\dif}[1][1]
-	{\if#11%
-		\mathop{}\!\mathrm{d}%
-	\else%
-		\mathop{}\!\mathrm{d}^#1
-	\fi} % 微分算子d
-\newcommand*{\diff}[3][1]
-	{\if#11%
-		\frac{\mathrm{d} #2}{\mathrm{d} #3}% 导数\diff{y}{x}
-	\else%
-		\frac{\mathrm{d}^{#1} #2}{\mathrm{d} #3^{#1}}% n阶导数\diff[n]{y}{x}
-	\fi}
-\newcommand*{\pdiff}[3][1]
-	{\if#11%
-		\frac{\partial #2}{\partial #3}% 偏导数\pdiff{y}{x}
-	\else%
-		\frac{\partial^{#1} #2}{\partial #3^{#1}}% n阶偏导数\pdiff[n]{y}{x}
-	\fi}
-
-
-
-% 笔者习惯的运算符:
-\DeclareMathOperator{\tg}{tg}
-\DeclareMathOperator{\ctg}{ctg}
-\DeclareMathOperator{\arctg}{arctg}
-\DeclareMathOperator{\sh}{sh}
-\DeclareMathOperator{\ch}{ch}
-% \DeclareMathOperator*{\指令}{显示} 
-% 带星号的版本会像\lim一样
-
-
 
 \begin{document}
 \maketitle % 打印标题
@@ -173,13 +53,13 @@
 \centering
 \begin{subfigure}{.5\textwidth}
 	\centering
-	\includegraphics[width=6cm]{\PATH latex-project-logo.pdf}
+	\includegraphics[width=6cm]{latex-project-logo.pdf}
 	\caption{题注}
 	\label{子图1}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
 	\centering
-	\includegraphics[width=6cm]{\PATH latex-project-logo.pdf}
+	\includegraphics[width=6cm]{latex-project-logo.pdf}
 	\caption{题注}
 	\label{子图2}
 \end{subfigure}
